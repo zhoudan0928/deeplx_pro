@@ -1,6 +1,6 @@
 module deeplx-pro
 
-go 1.22.4
+go 1.21
 
 require (
 	github.com/bogdanfinn/fhttp v0.5.28

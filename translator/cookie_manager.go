@@ -53,12 +53,3 @@ func markCookieInvalid(cookie string) {
 func initCookies() {
 	validateCookies()
 }
-
-func stringSliceContains(slice []string, item string) bool {
-	for _, s := range slice {
-		if s == item {
-			return true
-		}
-	}
-	return false
-}
