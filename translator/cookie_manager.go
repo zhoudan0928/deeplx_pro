@@ -19,10 +19,10 @@ func validateCookies() {
 	cookieList := strings.Split(cookieStr, ",")
 	for _, cookie := range cookieList {
 		cookie = strings.TrimSpace(cookie)
-		if len(cookie) == 36 {
+		if cookie != "" {
 			cookies = append(cookies, cookie)
 		} else {
-			log.Printf("Invalid cookie format: %s", cookie)
+			log.Printf("Empty cookie found and skipped")
 		}
 	}
 	if len(cookies) == 0 {
@@ -52,4 +52,13 @@ func markCookieInvalid(cookie string) {
 
 func initCookies() {
 	validateCookies()
+}
+
+func stringSliceContains(slice []string, item string) bool {
+	for _, s := range slice {
+		if s == item {
+			return true
+		}
+	}
+	return false
 }
