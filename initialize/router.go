@@ -10,7 +10,24 @@ import (
 
 // InitRouter initializes the Gin router with all necessary routes and middleware
 func InitRouter() *gin.Engine {
+	// 设置为release模式
+	gin.SetMode(gin.ReleaseMode)
+
 	r := gin.Default()
+
+	// 添加CORS中间件
+	r.Use(func(c *gin.Context) {
+		c.Header("Access-Control-Allow-Origin", "*")
+		c.Header("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
+		c.Header("Access-Control-Allow-Headers", "Content-Type")
+
+		if c.Request.Method == "OPTIONS" {
+			c.AbortWithStatus(204)
+			return
+		}
+
+		c.Next()
+	})
 
 	// 根路由，返回欢迎信息
 	r.GET("/", func(c *gin.Context) {
